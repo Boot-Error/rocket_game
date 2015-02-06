@@ -231,7 +231,7 @@ function loop() {
 	}
 	//add enemies if not present
 	if (enemiesArray.length<1) {
-		addEnemy(2);
+		addEnemy(1);
 	}
 	//time correction
 	var t1 = new Date().getTime();
