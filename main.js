@@ -52,6 +52,13 @@ window.addEventListener("keyup", function (e) {
 	keyStates = [];
 }, false);
 
+window.addEventListener("mousemove", function (e) {
+	var x_dist = rocket.x_pos - e.clientX;
+	var y_dist = rocket.y_pos - e.clientY;
+	rocket.angle = (Math.atan2(y_dist, x_dist)*180/Math.PI)+180;
+	console.log(rocket.angle);
+})
+
 //initializing
 window.onload = loop;
 
@@ -224,7 +231,7 @@ function loop() {
 	}
 	//add enemies if not present
 	if (enemiesArray.length<1) {
-		addEnemy(1);
+		addEnemy(2);
 	}
 	//time correction
 	var t1 = new Date().getTime();
