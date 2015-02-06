@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<style type="text/css">
+	canvas {
+		position: absolute;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+	</style>
+</head>
+<body>
+<canvas id="main"></canvas>
+<script type="text/javascript" src="explosion.js"></script>
+<script type="text/javascript">
+	var canvas = document.getElementById("main");
+	var context= canvas.getContext("2d");
+
+	canvas.width  = 400;
+	canvas.height = 300;
+
+	window.onload = loop;
+
+	function loop() {
+		context.fillStyle = "black"
+		context.fillRect(0, 0, canvas.width, canvas.height);
+		context.fill();
+		var t = new thrust(200, 150, 90);
+		t.update();
+		window.requestAnimationFrame(loop, 1000/60);
+	}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rocket</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+		canvas {
+			background-color: black;
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="main"></canvas>
+	<script type="text/javascript" src="explosion.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript">
+	var canvas = document.getElementById("main");
+
+	window.onresize = function () {
+		canvas.height = window.innerHeight;
+		canvas.width  = window.innerWidth;
+	}
+	</script>
+</body>
+</html>
