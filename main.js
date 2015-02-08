@@ -35,9 +35,10 @@ rocket.y_pos = canvas.height/2;
 
 //events
 window.addEventListener("keydown", function (e) {
-	e.preventDefault()
+	e.preventDefault();
 	var key = e.keyCode;
-	if (key===38 || key===40) {
+	if (key===38 || key===40 && keyStates.length<3) {
+		console.log(keyStates);
 		keyStates.push(key);
 	}
 	if (key==39) {
@@ -52,12 +53,12 @@ window.addEventListener("keyup", function (e) {
 	keyStates = [];
 }, false);
 
+//mouse event under dev
 window.addEventListener("mousemove", function (e) {
 	var x_dist = rocket.x_pos - e.clientX;
 	var y_dist = rocket.y_pos - e.clientY;
 	rocket.angle = (Math.atan2(y_dist, x_dist)*180/Math.PI)+180;
-	console.log(rocket.angle);
-})
+}, false);
 
 //initializing
 window.onload = loop;

@@ -19,9 +19,20 @@
 <script type="text/javascript">
 	var canvas = document.getElementById("main");
 	var context= canvas.getContext("2d");
+	var angle  = 0;
 
 	canvas.width  = 400;
 	canvas.height = 300;
+
+	x_pos = 200;
+	y_pos = 150;
+
+	window.addEventListener("mousemove", function (e) {
+		var x_dist = x_pos - e.clientX;
+		var y_dist = y_pos - e.clientY;
+		angle = (Math.atan2(y_dist, x_dist)*180/Math.PI);
+		console.log(angle);
+	}, false);
 
 	window.onload = loop;
 
@@ -29,7 +40,7 @@
 		context.fillStyle = "black"
 		context.fillRect(0, 0, canvas.width, canvas.height);
 		context.fill();
-		var t = new thrust(200, 150, 90);
+		var t = new thrust(x_pos, y_pos, angle);
 		t.update();
 		window.requestAnimationFrame(loop, 1000/60);
 	}

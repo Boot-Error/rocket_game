@@ -28,7 +28,7 @@ function Particle() {
 
 //explosion particle effect
 function Explode(x, y) {
-	var count = 200;
+	var count = 50;
 	for (i=0; i<count; i++) {
 		p = new Particle();
 		p.x_pos = x;
@@ -66,8 +66,8 @@ function thrust(x, y, angle) {
 		p.y_pos = y;
 		p.angle = angle;
 		p.life  = 10;
-		p.x_vel = (12+5*Math.random())*Math.cos(p.angle);
-		p.y_vel = (12+5*Math.random())*Math.sin(p.angle);
+		p.x_vel = (12+5*Math.random())*Math.cos(p.angle*Math.PI/180);
+		p.y_vel = (12+5*Math.random())*Math.sin(p.angle*Math.PI/180);
 		particleArray.push(p);
 	}
 	this.update = function update() {
