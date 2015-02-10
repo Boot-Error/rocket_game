@@ -37,7 +37,7 @@ rocket.y_pos = canvas.height/2;
 window.addEventListener("keydown", function (e) {
 	e.preventDefault();
 	var key = e.keyCode;
-	if (key===38 || key===40 && keyStates.length<3) {
+	if (key===38 || key===40 && keyStates.length<2) {
 		console.log(keyStates);
 		keyStates.push(key);
 	}
@@ -59,6 +59,25 @@ window.addEventListener("mousemove", function (e) {
 	var y_dist = rocket.y_pos - e.clientY;
 	rocket.angle = (Math.atan2(y_dist, x_dist)*180/Math.PI)+180;
 }, false);
+
+//firing using mouse
+window.addEventListener("mousedown", function (e) {
+	if (e.which===1) {
+		keyStates.push(40);
+	}
+	if (e.which===2) {
+		keyStates.push(38);
+	}
+}, false);
+
+window.addEventListener("mouseup", function (e) {
+	if (e.which===1) {
+		keyStates.splice(keyStates.indexOf(40), 1);
+	}
+	if (e.which===2) {
+		keyStates.splice(keyStates.indexOf(38), 1);
+	}
+})
 
 //initializing
 window.onload = loop;
@@ -193,7 +212,7 @@ function BulletGraphics() {
 		}
 	this.forceClear = function clearBullets() {
 		globalBulletArray = [];
-		console.log("lag!");
+		console.log("Bullets were cleared due to drop in FPS");
 	}
 }
 
@@ -210,9 +229,6 @@ function damage(object, globalBulletArray) {
 		var t_dist = Math.hypot(x_dist, y_dist);
 		if (t_dist<7) {
 			object.life -= 1;
-		}
-		if (t_dist<2) {
-			console.log("internal");
 		}
 	}
 }
